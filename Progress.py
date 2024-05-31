@@ -83,13 +83,18 @@ def revision():
     option = st.selectbox("Choose Subject",('English','Maths','Science','SSt'),
     placeholder="Select subject...",key='revSubj')
     filename = str(option)+".csv"
-    df= pd.read_csv(filename, usecols =['Chapter'])
-    ch = st.selectbox("Choose Chapter",df['Chapter'])
+    df= pd.read_csv(filename)
+    ch = st.selectbox("Choose Chapter",df['Chapter'])    
     with st.form("rev"):
+        """updated = df['Chapter'] == ch
+        st.write(updated)
+        testcount = df[updated,['Test_count']]
+        cnt = testcount+1"""
+        df.loc[df["Chapter"] == ch, "Test_count"] = df['Test_count']+1
+        #df.loc[updated,'Test_count']=cnt
         tdate= st.date_input("Choose Date")
         by= st.selectbox('Conducted by:',['School','YTTB','Self'])
         tot_qs = st.number_input("Total no of Questions",min_value=0)
-        
         tot_correct = st.number_input("Total no of correct questions",min_value=0)
         max_marks = st.number_input("Maximum Marks",min_value=1)
         score = st.number_input("Your Score")
@@ -99,10 +104,37 @@ def revision():
         submitted = st.form_submit_button("Click to Save!")
         if submitted:
             mydf.to_csv('revisiontest.csv',mode='a',header=False,index=False)
+            df.to_csv(filename,index=False)
 
+            
 
+def testRec():
+    exam = st.selectbox("Choose assessment",('PT1','PT2','Half yearly','PreBoard I','PreBoard II','BOARD'),
+    placeholder="Select subject...",key='testassess')
+    if exam=='BOARD':
+        exam = 'PreBoard II'
+    option = st.selectbox("Choose Subject",('English','Maths','Science','SSt'),
+    placeholder="Select subject...",key='testsubj')
+    filename = str(option)+".csv"
+    df= pd.read_csv(filename,usecols=['Chapter',exam,'Test_count'])
+    #ch_list = list(df['Chapter'])
+    #ch_list.append('All')
+    
+    #ch = st.selectbox("Choose Chapter",ch_list,key='testch')
+    
+    #if ch == 'All':
+     #   st.write(df)
+    #else:
+    rslt = df.loc[df[exam] == True]
+    st.write(rslt)
+    st.subheader('Test count - Exam wise')
+
+    st.bar_chart(rslt, x='Chapter',y= 'Test_count', color=['#FEE42D'])
+
+        
 
 def ready():
+    st.write(":blue[Note: This tab gives you an idea of preparedness with respect to Practice tests you have given]")
     exam = st.selectbox("Choose assessment",('PT1','PT2','Half yearly','PreBoard I','PreBoard II','BOARD'),
     placeholder="Select subject...",key='assess')
     option = st.selectbox("Choose Subject",('English','Maths','Science','SSt'),

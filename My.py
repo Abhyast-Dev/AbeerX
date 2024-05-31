@@ -49,16 +49,8 @@ def achieve():
 
     st.subheader('Hi! Abeer, Hope you had a good day:heart_eyes:')
     df = openfile()
-   
-   
-    tdate= datetime.now().date()
-    
+    tdate= datetime.now().date()    
     rslt_df = df[df['Date'] == str(tdate)]
- 
-
-
-
-
     mydict = rslt_df.to_dict('list')
 
     Do={}

@@ -44,7 +44,7 @@ def score():
          pass
        
 def update_marks():
-    exam_marks= pd.read_csv("Examdatesandmarks.csv")
+    exam_marks= pd.read_csv("examdatesandmarks.csv")
     exams = exam_marks.query("Percentage.isnull()")["Examination"]
     option = st.selectbox("Choose Examination",exams)
     with st.form('marksentry'):

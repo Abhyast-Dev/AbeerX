@@ -58,12 +58,14 @@ elif choice=="***Your marks***":
             marks.subj_Analysis()
     
 elif choice=="***Your Progress***":
-    tab1,tab2,tab3=st.tabs(["Subjectwise Info","Revision Tests","Readiness Analysis"])
+    tab1,tab2,tab3,tab4=st.tabs(["Subjectwise Info","Practice Tests Marks Entry","Practice Tests Report","Check Preparedness"])
     with tab1:
           pr.subject()
     with tab2:
           pr.revision()
     with tab3:
+          pr.testRec()
+    with tab4:
           pr.ready()
 
 elif choice=="***Self monitoring***":
