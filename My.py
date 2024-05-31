@@ -19,7 +19,7 @@ def writetofile(df):
 
 def Plan():
      with st.form('myplan'):
-        dt = st.date_input("Plan your day for :", datetime.now()+timedelta(days=1),format="YYYY-MM-DD")
+        dt = st.date_input("Plan your day for :", datetime.now().date()+timedelta(days=1),format="YYYY/MM/DD")
         tv = st.number_input('TV : No. of hours',min_value=0)
         imptv = st.slider("Choose level of importance on a scale of 1 to 10", 0,10,1,key='tv')
         Guitar = st.number_input("Guitar: No. of hours",min_value=0)
@@ -51,10 +51,10 @@ def achieve():
     df = openfile()
    
    
-    tdate= str(datetime.now().date())
+    tdate= datetime.now().date()
     
-
-    rslt_df = df[df['Date'] == tdate]
+    rslt_df = df[df['Date'] == str(tdate)]
+ 
 
 
 
