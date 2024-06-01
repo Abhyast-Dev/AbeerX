@@ -122,10 +122,10 @@ def achieve():
 
         if field.find('imp')!=-1:
             res = (str(i).split('_')[0]).strip()
-                    
-            if mydict[i][0] in range (8,11):
+            check =  mydict[i][0]       
+            if check in range (8,11):
                 Do[res]= x
-            elif mydict[i][0]in range (8,11):
+            elif check in range (8,11):
                 Later[res]=x
             else:
                 Ignore[res] =x
