@@ -41,7 +41,61 @@ def Plan():
                 writetofile(myact)
                 
                 st.markdown('Submitted responses:')
+def ToDo():
+     df= pd.read_csv("todo.csv")
+     tdate= datetime.now().date()-timedelta(days=1)
+     mydf = df['Date'] == str(tdate)
+     rslt_df = df[df['Date'] == str(tdate)]
+     
+     
+     if not(df.empty):
+     
+        with st.form('ytodo',clear_on_submit=False):
+            st.dataframe(rslt_df,hide_index=True)
+            submitted = st.form_submit_button("Submit")
+            on = st.toggle("Could you achieve?")
+            rem=st.text_area("Remarks",key="Remarks")
+            
+            if on == True:
+                ach = True                
+                st.balloons()
+            else:
+                ach = False                
+                st.toast('Imagine!',icon="🏅")
+                time.sleep(.5)
+                st.toast('Believe!',icon="🤩")
+                time.sleep(.5)
+                st.toast('Achieve!', icon='🎉')
+            df.loc[mydf, 'Achieved'] = ach
+            df.loc[mydf, 'Remarks'] = rem
+            if submitted:
+                    
+                    df.to_csv("todo.csv",index =False)
+                    st.markdown('Submitted response')
         
+
+                    
+         
+     with st.form('mytodo',clear_on_submit=False):
+        dt = st.date_input("Plan your day for :", datetime.now().date()+timedelta(days=1),format="YYYY/MM/DD")
+        todo = st.text_area("Plan for tomorrow",key='todo') 
+        submitted = st.form_submit_button("Submit")
+        d = {'Date': [dt],'Todo':[todo],'Achieved':False} 
+        myact=pd.DataFrame(d)       
+
+        if submitted:
+                myact.to_csv("todo.csv",mode='a', index=False, header=False)
+                
+                st.markdown('Submitted response')
+  
+     st.subheader("To Do Achievement Percentage")
+     new = df.groupby(['Date'])['Achieved'].count() 
+     fig1, ax1 = plt.subplots()
+     ax1.pie(new,startangle=90,labels=['Achieved set targets','Did not achieve set targets'],autopct="%.1f")
+    
+     st.pyplot(fig1)
+                
+
             
         
         
