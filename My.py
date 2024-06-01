@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime,timedelta
 import time
+import matplotlib.pyplot as plt
 
 
 def openfile():
