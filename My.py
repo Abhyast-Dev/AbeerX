@@ -93,8 +93,9 @@ def ToDo():
   
      st.subheader("To Do Achievement Percentage")
      new = df.groupby(['Date'])['Achieved'].count() 
+     x = list(df.Desc.unique())
      fig1, ax1 = plt.subplots()
-     ax1.pie(new,startangle=90,labels=['Achieved set targets','Did not achieve set targets'],autopct="%.1f")
+     ax1.pie(new,startangle=90,labels=x,autopct="%.1f")
     
      st.pyplot(fig1)
                 
