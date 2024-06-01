@@ -105,7 +105,7 @@ def ToDo():
 def achieve():
 
     st.subheader('Hi! Abeer, Hope you had a good day:heart_eyes:')
-    st.write(":blue[Time management is not about managing TIME. It's about managing priorities]")
+    st.write(":blue[Time management is not about managing TIME. It's about managing PRIORITIES]")
     df = openfile()
     tdate= datetime.now().date()    
     rslt_df = df[df['Date'] == str(tdate)]
