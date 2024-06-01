@@ -20,7 +20,7 @@ def writetofile(df):
 
 def Plan():
     
-    st.write(":blue[A goal without a plan is just a wish.]")
+     st.write(":blue[A goal without a plan is just a wish.]")
      with st.form('myplan'):
         dt = st.date_input("Plan your day for :", datetime.now().date()+timedelta(days=1),format="YYYY/MM/DD")
         tv = st.number_input('TV : No. of hours',min_value=0)
