@@ -123,9 +123,9 @@ def achieve():
         if field.find('imp')!=-1:
             res = (str(i).split('_')[0]).strip()
                     
-            if mydict[i][0]>=8 and mydict[i][0]<11:
+            if mydict[i][0] in range (8,11):
                 Do[res]= x
-            elif mydict[i][0]>=5 and mydict[i][0]<8:
+            elif mydict[i][0]in range (8,11):
                 Later[res]=x
             else:
                 Ignore[res] =x
