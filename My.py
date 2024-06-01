@@ -19,6 +19,8 @@ def writetofile(df):
 
 
 def Plan():
+    
+    st.write(":blue[A goal without a plan is just a wish.]")
      with st.form('myplan'):
         dt = st.date_input("Plan your day for :", datetime.now().date()+timedelta(days=1),format="YYYY/MM/DD")
         tv = st.number_input('TV : No. of hours',min_value=0)
@@ -47,7 +49,7 @@ def ToDo():
      tdate= datetime.now().date()-timedelta(days=1)
      mydf = df['Date'] == str(tdate)
      rslt_df = df[df['Date'] == str(tdate)]
-     
+     st.write(":blue[The victory of success is half won when one gains the habit of setting goals and achieving them.]")
      
      if not(df.empty):
      
@@ -103,6 +105,7 @@ def ToDo():
 def achieve():
 
     st.subheader('Hi! Abeer, Hope you had a good day:heart_eyes:')
+    st.write(":blue[Time management is not about managing TIME. It's about managing priorities]")
     df = openfile()
     tdate= datetime.now().date()    
     rslt_df = df[df['Date'] == str(tdate)]
