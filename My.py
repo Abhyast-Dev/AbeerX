@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime,timedelta
 import time
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 
 def openfile():
@@ -17,7 +18,7 @@ def addtofile(df):
 def writetofile(df):
     df.to_csv("activities.csv",index =False)
 
-
+d={}
 def Plan():
     
      st.write(":blue[A goal without a plan is just a wish.]")
@@ -39,19 +40,20 @@ def Plan():
         impsleep = st.slider("Choose level of importance on a scale of 1 to 10", 0,10,1,key='sleep')
         submitted = st.form_submit_button("Submit")
         d = {'Date': [dt],'TV':[tv],'TV_imp' :[imptv],'Guitar':[Guitar], 'Guitar_imp': [impguitar],'Music':[music],'Music_imp': [impmusic], 'Playing': [playing], 'Playing_imp' : [impplaying],  'Homework' : [homework],'Homework_imp': [imphomework],'Selfstudy': [selfstudy], 'Selfstudy_imp' : [impselfstudy],'Sleep':[sleep],'Sleep_imp':[impsleep]} 
-        myact=pd.DataFrame(d)       
+        myact=pd.DataFrame(d)     
+        
         if submitted:
                 writetofile(myact)
                 
                 st.markdown('Submitted responses:')
 def ToDo():
-     df= pd.read_csv("todo.csv")
-     tdate= datetime.now().date()-timedelta(days=1)
-     mydf = df['Date'] == str(tdate)
-     rslt_df = df[df['Date'] == str(tdate)]
-     st.write(":blue[The victory of success is half won when one gains the habit of setting goals and achieving them.]")
-     
-     if not(df.empty):
+    df= pd.read_csv("todo.csv")
+    tdate= datetime.now().date()-timedelta(days=1)
+    mydf = df['Date'] == str(tdate)
+    rslt_df = df[df['Date'] == str(tdate)]
+    st.write(":blue[The victory of success is half won when one gains the habit of setting goals and achieving them.]")
+   
+    if not(df.empty):
      
         with st.form('ytodo',clear_on_submit=False):
             st.dataframe(rslt_df,hide_index=True)
@@ -79,56 +81,65 @@ def ToDo():
 
                     
          
-     with st.form('mytodo',clear_on_submit=False):
+    with st.form('mytodo',clear_on_submit=True):
         dt = st.date_input("Plan your day for :", datetime.now().date()+timedelta(days=1),format="YYYY/MM/DD")
         todo = st.text_area("Plan for tomorrow",key='todo') 
+        num = st.slider("Achieved?,Choose from a scale of 0 to 5. 0 means -> Not at all, 1-> 25%, 2-> 50%, 3->75%, 4-> All Done  ")
         submitted = st.form_submit_button("Submit")
-        d = {'Date': [dt],'Todo':[todo],'Achieved':False} 
+        if num==0:
+            desc = " Not at all"
+        elif num == 1:
+            desc = "25%"
+        elif num ==2:
+            desc = '50%'
+        elif num == 3:
+            desc = '75%'
+        else:
+            desc = 'All Done'
+        d = {'Date': [dt],'Todo':[todo],'Achieved':num,'Desc': desc} 
         myact=pd.DataFrame(d)       
 
         if submitted:
                 myact.to_csv("todo.csv",mode='a', index=False, header=False)
                 
                 st.markdown('Submitted response')
-  
-     st.subheader("To Do Achievement Percentage")
-     new = df.groupby(['Date'])['Achieved'].count() 
-     x = list(df.Desc.unique())
-     fig1, ax1 = plt.subplots()
-     ax1.pie(new,startangle=90,labels=x,autopct="%.1f")
     
-     st.pyplot(fig1)
+
+    fig = px.pie(values = df['Achieved'],hole = 0.5)
+    mydf = df.groupby(['Desc'])['Desc'].count().reset_index(name='count')
+    fig = px.pie(mydf, values='count', names='Desc', title='To do Analysis')
+    
+
+    st.plotly_chart(fig)
                 
 
             
         
         
 def achieve():
-
     st.subheader('Hi! Abeer, Hope you had a good day:heart_eyes:')
-    st.write(":blue[Time management is not about managing TIME. It's about managing PRIORITIES]")
+    st.write(":blue[Time management is not about managing TIME. It's about managing priorities]")
     df = openfile()
     tdate= datetime.now().date()    
     rslt_df = df[df['Date'] == str(tdate)]
-    mydict = rslt_df.to_dict('list')
-
     Do={}
     Later={}
     Ignore={}
-    for i in mydict:
-        if (i.find('imp') ==-1):
-            x = mydict[i]
+    for i in rslt_df:
+        if (str(i).find('imp') ==-1):
+            x = rslt_df[i]
         field = str(i)
 
         if field.find('imp')!=-1:
-            res = (str(i).split('_')[0]).strip()
-            check =  mydict[i][0]       
-            if check in range (8,11):
-                Do[res]= x
-            elif check in range (8,11):
-                Later[res]=x
+            res = int(rslt_df[i])
+            st.write(res)
+                    
+            if int(res)>=8 and int(res)<11:
+                Do[i]= x
+            elif int(res)>=5 and int(res)<8:
+                Later[i]=x
             else:
-                Ignore[res] =x
+                Ignore[i] =x
     with st.form("valueupdate"):
 
         st.text("Could you achieve your plan?")
@@ -138,13 +149,13 @@ def achieve():
         with container:
             st.caption("Absolutely necessary, ")
             for i in Do:
-                st.success( str(i)+" :->"+str(Do[i][0])+" hours")
+                st.success( str(i)+" :->"+str(Do[i])+" hours")
             st.caption("Leisure time, can be done later")
             for i in Later:
-                st.warning( str(i)+" :->"+str(Later[i][0])+" hours")
+                st.warning( str(i)+" :->"+str(Later[i])+" hours")
             st.caption("Can be ignored")
             for i in Ignore:
-                st.info( str(i)+" :->"+str(Ignore[i][0])+" hours")
+                st.info( str(i)+" :->"+str(Ignore[i])+" hours")
             on = st.toggle("Everything went as planned")
     
             if on:
