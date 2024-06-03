@@ -134,9 +134,9 @@ def achieve():
             res = int(rslt_df[i])
             st.write(res)
                     
-            if int(res)>=8 and int(res)<11:
+            if res>=8 and res<11:
                 Do[i]= x
-            elif int(res)>=5 and int(res)<8:
+            elif res>=5 and res<8:
                 Later[i]=x
             else:
                 Ignore[i] =x
