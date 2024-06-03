@@ -120,23 +120,25 @@ def achieve():
     st.subheader('Hi! Abeer, Hope you had a good day:heart_eyes:')
     st.write(":blue[Time management is not about managing TIME. It's about managing priorities]")
     df = openfile()
-    tdate= datetime.now().date()    
-    rslt_df = df[df['Date'] == str(tdate)]
+    tdate= datetime.now().date() 
+    myloc=    df['Date'] == str(tdate)
+    rslt_df = df[myloc]
+    st.dataframe(rslt_df,hide_index=True)
     Do={}
     Later={}
     Ignore={}
-    for i in rslt_df:
+    for i in rslt_df.columns:
         if (str(i).find('imp') ==-1):
-            x = rslt_df[i]
+            x = rslt_df.loc[myloc][i]
         field = str(i)
 
         if field.find('imp')!=-1:
-            value = rslt_df[i]
-            res = int(value)
+            res = rslt_df.loc[myloc][i]
+            #st.write(res)
                     
-            if res>=8 and res<11:
+            if int(res)>=8 and int(res)<11:
                 Do[i]= x
-            elif res>=5 and res<8:
+            elif int(res)>=5 and int(res)<8:
                 Later[i]=x
             else:
                 Ignore[i] =x
