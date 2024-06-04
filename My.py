@@ -139,6 +139,7 @@ def achieve():
         
         if field.find('imp')!=-1:
             res = rslt_df[i].item()
+            st.write(res)
                                         
             if (res>=8) & (res<=10):
                 Do[i]= x
