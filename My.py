@@ -134,7 +134,7 @@ def achieve():
     Ignore={}
     for i in rslt_df.columns:
         if (str(i).find('imp') ==-1):
-            x = i
+            x = str(i)
         field = str(i)
         
         if field.find('imp')!=-1:
