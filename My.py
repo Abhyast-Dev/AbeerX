@@ -138,11 +138,11 @@ def achieve():
         field = str(i)
         
         if field.find('imp')!=-1:
-            res = rslt_df[i]
+            res = rslt_df[i].item()
                                         
-            if (res.item()>=8) & (res.item()<=10):
+            if (res>=8) & (res<=10):
                 Do[i]= x
-            elif (res.item()>=5) & (res.item() <=7):
+            elif (res>=5) & (res <=7):
                 Later[i]=x
             else:
                 Ignore[i] =x
