@@ -16,7 +16,7 @@ def addtofile(df):
     df.to_csv("activities.csv",mode='a', index=False, header=False)
 
 def writetofile(df):
-    df.to_csv("activities.csv",index =False)
+    df.to_csv("activities.csv",mode='a',header=False,index =False)
 
 d={}
 def Plan():
@@ -75,7 +75,7 @@ def ToDo():
             df.loc[mydf, 'Remarks'] = rem
             if submitted:
                     
-                    df.to_csv("todo.csv",index =False)
+                    df.to_csv("todo.csv",mode='a', header=False,index =False)
                     st.markdown('Submitted response')
         
 
@@ -84,7 +84,7 @@ def ToDo():
     with st.form('mytodo',clear_on_submit=True):
         dt = st.date_input("Plan your day for :", datetime.now().date()+timedelta(days=1),format="YYYY/MM/DD")
         todo = st.text_area("Plan for tomorrow",key='todo') 
-        num = st.slider("Achieved?,Choose from a scale of 0 to 5. 0 means -> Not at all, 1-> 25%, 2-> 50%, 3->75%, 4-> All Done  ")
+        num = st.slider("Achieved?,Choose from a scale of 0 to 5. 0 means -> Not at all, 1-> 25%, 2-> 50%, 3->75%, 4-> All Done  ",min_value=0, max_value=4)
         submitted = st.form_submit_button("Submit")
         if num==0:
             desc = " Not at all"
@@ -129,25 +129,29 @@ def achieve():
     Ignore={}
     for i in rslt_df.columns:
         if (str(i).find('imp') ==-1):
-            x = rslt_df.loc[myloc][i]
+            x = i
         field = str(i)
-
+        
         if field.find('imp')!=-1:
-            res = rslt_df.loc[myloc][i]
-            #st.write(res)
-                    
-            if int(res)>=8 and int(res)<11:
+            reslt = rslt_df.loc[myloc,i]
+            res = reslt._get_value(0,i)
+            st.write("Imp is not present")
+                       
+            if (res>=8) & (res<=10):
                 Do[i]= x
-            elif int(res)>=5 and int(res)<8:
+            elif (res>=5) & (res<=7):
                 Later[i]=x
             else:
                 Ignore[i] =x
+        else:
+            st.write("No value in res")
     with st.form("valueupdate"):
 
         st.text("Could you achieve your plan?")
 
         container = st.container(border=True)
         status=False
+        
         with container:
             st.caption("Absolutely necessary, ")
             for i in Do:
