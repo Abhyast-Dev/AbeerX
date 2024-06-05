@@ -74,14 +74,14 @@ def subject():
         maths_Display()
    elif option == "Science":
         science_Display()
-   elif option == "SSt":
+   elif option == "SST":
         sst_Display()
     
 
 
 
 def revision():
-    option = st.selectbox("Choose Subject",('English','Maths','Science','SSt'),
+    option = st.selectbox("Choose Subject",('English','Maths','Science','SST'),
     placeholder="Select subject...",key='revSubj')
     filename = str(option)+".csv"
     df= pd.read_csv(filename)
@@ -106,8 +106,8 @@ def revision():
         if submitted:
             with st.spinner('Saving data...'):
                 time.sleep(5)
-            mydf.to_csv('revisiontest.csv',mode='a',header=False,index=False)
-            df.to_csv(filename,index=False)
+            mydf.to_csv('Revisiontest.csv',mode='a',header=False,index=False)
+            df.to_csv(filename,header=False,index=False)
             st.success("Done")
 
             
