@@ -138,7 +138,8 @@ def achieve():
         field = str(i)
         
         if field.find('imp')!=-1:
-            res = rslt_df[i].item()
+            result = rslt_df[i]
+            res= result.item()
            
                                         
             if (res>=8) & (res<=10):
