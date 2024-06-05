@@ -103,8 +103,11 @@ def revision():
         mydf = pd.DataFrame(mydict)
         submitted = st.form_submit_button("Click to Save!")
         if submitted:
+            with st.spinner('Saving data...'):
+                time.sleep(5)
             mydf.to_csv('revisiontest.csv',mode='a',header=False,index=False)
             df.to_csv(filename,index=False)
+            st.success("Done")
 
             
 
