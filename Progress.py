@@ -28,7 +28,7 @@ def disp_distributionChart(df):
                     weight.append(size[j])
                     count+=1
             
-
+       
         fig1, ax1 = plt.subplots()
         ax1.pie(weight,labels=unit,autopct="%.1f",startangle=90)
         ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
@@ -74,7 +74,7 @@ def subject():
         maths_Display()
    elif option == "Science":
         science_Display()
-   elif option == "SST":
+   elif option == "SSt":
         sst_Display()
     
 
@@ -86,12 +86,12 @@ def revision():
     filename = str(option)+".csv"
     df= pd.read_csv(filename)
     ch = st.selectbox("Choose Chapter",df['Chapter'])    
-    with st.form("rev"):
+    with st.form("rev",clear_on_submit=True):
         """updated = df['Chapter'] == ch
         st.write(updated)
         testcount = df[updated,['Test_count']]
         cnt = testcount+1"""
-        df.loc[df["Chapter"] == ch, "Test_count"] = df['Test_count']+1
+        
         #df.loc[updated,'Test_count']=cnt
         tdate= st.date_input("Choose Date")
         by= st.selectbox('Conducted by:',['School','YTTB','Self'])
@@ -99,29 +99,33 @@ def revision():
         tot_correct = st.number_input("Total no of correct questions",min_value=0)
         max_marks = st.number_input("Maximum Marks",min_value=1)
         score = st.number_input("Your Score")
-        per= (score/max_marks)*100           
+        per= round((score/max_marks)*100 ,1)         
         mydict= {'Date':[tdate],'Subject':[option],'Chapter covered':[ch],'Total Questions':[tot_qs],'No of Correct Answers':[tot_correct],'Max Marks':[max_marks],'Marks Scored':[score],'By':[by],'Percentage':[per]}
         mydf = pd.DataFrame(mydict)
+        updated= df["Chapter"] == ch
+        df.loc[updated, "Test_count"] = df['Test_count']+1
         submitted = st.form_submit_button("Click to Save!")
+        
         if submitted:
             with st.spinner('Saving data...'):
                 time.sleep(5)
             mydf.to_csv('Revisiontest.csv',mode='a',header=False,index=False)
-            df.to_csv(filename,header=False,index=False)
+            df.to_csv(filename,index =False)
             st.success("Done")
+            
 
             
 
 def testRec():
-    exam = st.selectbox("Choose assessment",('PT1','PT2','Half yearly','PreBoard I','PreBoard II','BOARD'),
+    exam = st.selectbox("Choose assessment",('PT1','PT2','Half Yearly','PreBoard I','PreBoard II','BOARD'),
     placeholder="Select subject...",key='testassess')
     if exam=='BOARD':
         exam = 'PreBoard II'
-    option = st.selectbox("Choose Subject",('English','Maths','Science','SSt'),
+    option = st.selectbox("Choose Subject",('English','Maths','Science','SST'),
     placeholder="Select subject...",key='testsubj')
     filename = str(option)+".csv"
     df= pd.read_csv(filename,usecols=['Chapter',exam,'Test_count'])
-    #ch_list = list(df['Chapter'])
+    ch_list = list(df['Chapter'])
     #ch_list.append('All')
     
     #ch = st.selectbox("Choose Chapter",ch_list,key='testch')
@@ -130,16 +134,37 @@ def testRec():
      #   st.write(df)
     #else:
     rslt = df.loc[df[exam] == True]
-    st.write(rslt)
+    #st.write(rslt)
     st.subheader('Test count - Exam wise')
+    
+    fig1 = px.bar(rslt, x='Chapter',y= 'Test_count', color='Test_count',text_auto=True)
+    st.plotly_chart(fig1)
+    figp = px.pie(rslt, values='Test_count', names= 'Chapter', color='Test_count',title='Number of practice tests taken- Percentage Analysis')
+    figp.update_traces(textposition='inside', textinfo='percent+label')
 
-    st.bar_chart(rslt, x='Chapter',y= 'Test_count', color=['#FEE42D'])
+    st.plotly_chart(figp)
+    
+
+
+    testdf= pd.read_csv('Revisiontest.csv',usecols=['Date','Chapter covered','Percentage'])
+    myres = testdf[testdf['Chapter covered'].isin(ch_list)]
+    st.subheader("Precentage of marks scored for each chapter")
+    #st.write(myres)
+       
+    figh = px.histogram(myres, x="Chapter covered", y="Percentage",
+             color='Percentage', barmode='group',
+             height=400,text_auto=True)
+    st.plotly_chart(figh)    
+
+    
+        
+    
 
         
 
 def ready():
     st.write(":blue[Note: This tab gives you an idea of preparedness with respect to Practice tests you have given]")
-    exam = st.selectbox("Choose assessment",('PT1','PT2','Half yearly','PreBoard I','PreBoard II','BOARD'),
+    exam = st.selectbox("Choose assessment",('PT1','PT2','Half Yearly','PreBoard I','PreBoard II','BOARD'),
     placeholder="Select subject...",key='assess')
     option = st.selectbox("Choose Subject",('English','Maths','Science','SSt'),
     placeholder="Select subject...",key='subj')
@@ -166,21 +191,44 @@ def ready():
     
     st.subheader(exam +' Analysis - Percentage Scored')
 
-    st.bar_chart(x1, x='Chapter covered',y= 'Percentage', color=['#FEE42D'])
+    st.bar_chart(x1, x='Chapter covered',y= 'Percentage', color= 'Percentage')
     
-    st.subheader(exam +' Analysis - Mean and Standard Deviation')
-    st.write('Note: Mean indicates the average marks scored in revision tests of a chapter. A standard deviation close to zero indicates that data points are very close to the mean, whereas a larger standard deviation indicates data points are spread further away from the mean (average marks you scored for a chapter)')
     
-    st.scatter_chart(permean, x=None,y= ['mean','std'], color=['#272B6A','#FEE42D'])
+    
+    
+    
+    #st.scatter_chart(permean, x=None,y= ['mean','std'], color=['#272B6A','#FEE42D'])
     
     #st.bar_chart(permean,x='Chapter covered',y= 'std', color=['#272B6A'])
     
     st.subheader(exam +' Analysis - Box Plot')
-    fig = px.box(x1, x='Chapter covered', y='Percentage')
+    fig = px.box(x1, x="Chapter covered", y="Percentage", points="all",color= 'Percentage')
+    
     st.plotly_chart(fig)
 
 
    
    
-def prepared():
-    pass
+def examadministered():
+    df1= pd.read_csv("Revisiontest.csv")
+    subj1 = set(df1['Subject'])
+    option = st.selectbox("Choose Subject",subj1,
+    placeholder="Select subject...",key='subj1')
+    df = df1[df1['Subject'] == option]
+    
+    x = st.toggle("Show chapter wise")
+    
+    if x == True:
+      ch =  set(df['Chapter covered'])
+      optionch = st.selectbox("Choose Chapter",ch,
+      placeholder="Select subject...",key='chap')
+
+      
+      dfch = df[df['Chapter covered'] == optionch]
+      st.dataframe(dfch,hide_index=True)  
+    else:
+        st.dataframe(df,hide_index=True)    
+
+
+
+

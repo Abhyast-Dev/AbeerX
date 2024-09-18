@@ -7,8 +7,8 @@ def color_status(val):
     color = 'red' if val=='Done with' else 'lightgreen'
     return f'background-color: {color}'
 
-exam_det= pd.read_csv("Examdatesandmarks.csv",usecols=['Examination','Starting date'])
-exam_marks= pd.read_csv("Examdatesandmarks.csv",usecols=['Examination','English','Hindi', 'Maths','Science','SSt','AI','Percentage'])
+exam_det= pd.read_csv("examdatesandmarks.csv",usecols=['Examination','Starting date'])
+exam_marks= pd.read_csv("examdatesandmarks.csv",usecols=['Examination','English','Hindi', 'Maths','Science','SSt','AI','Percentage'])
 def exam_tab1():
     lst_date=[]
     status=[]
@@ -18,8 +18,14 @@ def exam_tab1():
     exam_det['Days left']=lst_date
     exam_det['Days left']=exam_det['Days left'].dt.days
     updated = exam_det['Days left'] <0
+    
     exam_det.loc[updated, 'Days left'] = 0
+    dateid = exam_det['Days left']>0
+    messagedays = exam_det.loc[dateid]
+   
+    
     for i in exam_det['Days left']:
+        
          if i>0:
               status.append('Upcoming')
          else:
@@ -29,17 +35,8 @@ def exam_tab1():
     
     st.caption(":green[**Exam dates**]")
     st.dataframe(exam_det.style.applymap(color_status, subset=['Status']),hide_index = True)  
-    
-    focusdays= list(exam_det['Days left'])
-    focusdays.sort()
-    value = focusdays[1]
-    message = exam_det['Days left']== value
-    x = exam_det.loc[message]
-    #elected_rows = df.loc[df['A'] > 5]
-    #df['col_name']. values[] 
-
     st.write("Hey Abeer!")
-    st.write(":red["+str(x['Examination'].values[0])+"] is approaching. We have :red[",str(x['Days left'].values[0]),"] days to prepare! Go on :red[SET TARGETS], give your BEST!")      
+    st.write(":red["+str(messagedays['Examination'].values[0])+"] is approaching. We have :red[",str(messagedays['Days left'].values[0]),"] days to prepare! Go on :red[SET TARGETS], give your BEST!")      
     
 
 def exam_tab2():

@@ -22,7 +22,7 @@ d={}
 def Plan():
     
      st.write(":blue[A goal without a plan is just a wish.]")
-     with st.form('myplan'):
+     with st.form('myplan',clear_on_submit=True):
         dt = st.date_input("Plan your day for :", datetime.now().date()+timedelta(days=1),format="YYYY/MM/DD")
         tv = st.number_input('TV : No. of hours',min_value=0)
         imptv = st.slider("Choose level of importance on a scale of 1 to 10", 0,10,1,key='tv')
@@ -48,14 +48,16 @@ def Plan():
                 st.markdown('Submitted responses:')
 def ToDo():
     df= pd.read_csv("todo.csv")
-    tdate= datetime.now().date()-timedelta(days=1)
+    tdate= datetime.now().date() #-timedelta(days=1)
     mydf = df['Date'] == str(tdate)
     rslt_df = df[mydf]
+    x= rslt_df['Todo']
+    dt = rslt_df['Date']
     st.write(":blue[The victory of success is half won when one gains the habit of setting goals and achieving them.]")
     desc=None
     if not(df.empty):
         
-        on = st.toggle("Hi Abeer 👦🏻! Could you achieve your yesterday's plan?")
+        on = st.toggle(":red[Hi Abeer 👦🏻! Could you achieve?]")
         if(on==True):
             num = st.slider("Achieved?,Choose from a scale of 0 to 5. 0 means -> Not at all, 1-> 25%, 2-> 50%, 3->75%, 4-> All Done  ",min_value=0, max_value=4)
             ach = True      
@@ -79,8 +81,11 @@ def ToDo():
             st.toast('Achieve!', icon='🎉')
         
             
-        with st.form('ytodo',clear_on_submit=False):
-            st.dataframe(rslt_df,hide_index=True)
+        with st.form('ytodo',clear_on_submit=True):
+            st.success("Your plan for:"+str(dt.item()))
+            st.warning(x.item())
+        
+                  
             submitted = st.form_submit_button("Submit")
             
             rem=st.text_area("Remarks",key="Remarks")
@@ -126,15 +131,18 @@ def achieve():
     st.write(":blue[Time management is not about managing TIME. It's about managing priorities]")
     df = openfile()
     tdate= datetime.now().date() 
+
     myloc = df['Date'] == str(tdate)
     rslt_df = df[myloc]
+    
     st.dataframe(rslt_df,hide_index=True)
     Do={}
     Later={}
     Ignore={}
     for i in rslt_df.columns:
         if (str(i).find('imp') ==-1):
-            x = str(i)
+            it = rslt_df[i]
+            x= it.item()
         field = str(i)
         
         if field.find('imp')!=-1:
@@ -149,7 +157,7 @@ def achieve():
             else:
                 Ignore[i] =x
         
-    with st.form("valueupdate"):
+    with st.form("valueupdate",clear_on_submit=True):
 
         st.text("Could you achieve your plan?")
 
@@ -194,7 +202,7 @@ def share():
     #feeldf= pd.read_csv("expressself.csv",usecols=['Date','Feelings'])
     
     
-    with st.form("feeldata"):
+    with st.form("feeldata",clear_on_submit=True):
         st.snow()           
         # Create two columns
         col1, col2=st.columns(2)

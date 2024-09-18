@@ -7,6 +7,16 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+code = """
+<style>
+    p {
+        color: #000000;
+    }
+</style>
+"""
+st.html(code)
+
+
 from datetime import datetime 
 from datetime import date
 import impdates as imp
@@ -31,6 +41,7 @@ st.subheader("")
 
 
 with st.sidebar:
+    st.logo('logo/logosmall.png', icon_image='logo/Abhyast full.png')
     st.subheader('Hi, Abeer!:i_love_you_hand_sign:')
     diff = str(daysleft())
     
@@ -58,7 +69,7 @@ elif choice=="***Your marks***":
             marks.subj_Analysis()
     
 elif choice=="***Your Progress***":
-    tab1,tab2,tab3,tab4=st.tabs(["Subjectwise Info","Practice Tests Marks Entry","Practice Tests Report","Check Preparedness"])
+    tab1,tab2,tab3,tab4,tab5=st.tabs(["Subjectwise Info","Practice Tests Marks Entry","Practice Tests Report","Check Preparedness", "Practice Test details"])
     with tab1:
           pr.subject()
     with tab2:
@@ -67,6 +78,8 @@ elif choice=="***Your Progress***":
           pr.testRec()
     with tab4:
           pr.ready()
+    with tab5:
+          pr.examadministered()
 
 elif choice=="***Self monitoring***":
     tab1,tab2,tab3,tab4=st.tabs(["Plan for Tomorrow","Today's achievement","To do","Self Reflection"])
@@ -78,6 +91,7 @@ elif choice=="***Self monitoring***":
         My.ToDo()
     with tab4:
         My.share()
+    
 
 
 
