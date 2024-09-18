@@ -7,8 +7,8 @@ def color_status(val):
     color = 'red' if val=='Done with' else 'lightgreen'
     return f'background-color: {color}'
 
-exam_det= pd.read_csv("examdatesandmarks.csv",usecols=['Examination','Starting date'])
-exam_marks= pd.read_csv("examdatesandmarks.csv",usecols=['Examination','English','Hindi', 'Maths','Science','SSt','AI','Percentage'])
+exam_det= pd.read_csv("Examdatesandmarks.csv",usecols=['Examination','Starting date'])
+exam_marks= pd.read_csv("Examdatesandmarks.csv",usecols=['Examination','English','Hindi', 'Maths','Science','SSt','AI','Percentage'])
 def exam_tab1():
     lst_date=[]
     status=[]
