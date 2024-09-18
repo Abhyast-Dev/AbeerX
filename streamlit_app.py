@@ -62,7 +62,8 @@ elif choice=="***Your marks***":
     with tab1:
             marks.score()
     with tab2:
-          marks.update_marks()
+          st.subheader("Hey Abeer! The marks need to be directly updated to CSV. Sorry for the inconvenience")
+          #marks.update_marks()
     with tab3:
             marks.exam_Analysis()
     with tab4:
@@ -73,14 +74,15 @@ elif choice=="***Your Progress***":
     with tab1:
           pr.subject()
     with tab2:
-          pr.revision()
+          st.subheader("Hey Abeer! The marks need to be directly updated to CSV. Sorry for the inconvenience")
+          #pr.revision()
     with tab3:
           pr.testRec()
     with tab4:
           pr.ready()
     with tab5:
           pr.examadministered()
-
+"""
 elif choice=="***Self monitoring***":
     tab1,tab2,tab3,tab4=st.tabs(["Plan for Tomorrow","Today's achievement","To do","Self Reflection"])
     with tab1:
@@ -92,7 +94,7 @@ elif choice=="***Self monitoring***":
     with tab4:
         My.share()
     
-
+"""
 
 
 
