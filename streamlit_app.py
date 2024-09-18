@@ -82,19 +82,6 @@ elif choice=="***Your Progress***":
           pr.ready()
     with tab5:
           pr.examadministered()
-"""
-elif choice=="***Self monitoring***":
-    tab1,tab2,tab3,tab4=st.tabs(["Plan for Tomorrow","Today's achievement","To do","Self Reflection"])
-    with tab1:
-        My.Plan()
-    with tab2:
-        My.achieve()
-    with tab3:
-        My.ToDo()
-    with tab4:
-        My.share()
-    
-"""
 
 
 
