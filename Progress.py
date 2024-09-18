@@ -79,7 +79,7 @@ def subject():
     
 
 
-
+"""
 def revision():
     option = st.selectbox("Choose Subject",('English','Maths','Science','SST'),
     placeholder="Select subject...",key='revSubj')
@@ -114,7 +114,7 @@ def revision():
             st.success("Done")
             
 
-            
+   """         
 
 def testRec():
     exam = st.selectbox("Choose assessment",('PT1','PT2','Half Yearly','PreBoard I','PreBoard II','BOARD'),
