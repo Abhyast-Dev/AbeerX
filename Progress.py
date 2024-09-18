@@ -87,10 +87,6 @@ def revision():
     df= pd.read_csv(filename)
     ch = st.selectbox("Choose Chapter",df['Chapter'])    
     with st.form("rev",clear_on_submit=True):
-        """updated = df['Chapter'] == ch
-        st.write(updated)
-        testcount = df[updated,['Test_count']]
-        cnt = testcount+1"""
         
         #df.loc[updated,'Test_count']=cnt
         tdate= st.date_input("Choose Date")
