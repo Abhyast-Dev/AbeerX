@@ -8,11 +8,11 @@ exam_marks= pd.read_csv("Examdatesandmarks.csv",usecols=['Examination','English'
 exams = exam_marks.query("Percentage.notnull()")["Examination"]
 perc = exam_marks.query("Percentage.notnull()")["Percentage"]
 
-
+"""
 def writetofile(df):
     
         df.to_csv("Examdatesandmarks.csv",index=False)
-        
+ """       
 
 def drawchart(exam,df):
      
@@ -50,7 +50,7 @@ def score():
     else:
          pass
        
-def update_marks():
+"""def update_marks():
     exam_marks= pd.read_csv("examdatesandmarks.csv")
     df = pd.read_csv("Result.csv")
     exams = exam_marks.query("Percentage.isnull()")["Examination"]
@@ -86,7 +86,7 @@ def update_marks():
         st.dataframe(exam_marks,hide_index=True)
         #html = build_table(exam_marks, 'blue_light')
         #components.html(html)
-           
+   """        
 def exam_Analysis():
    df = pd.read_csv('Result.csv')
    #st.bar_chart(exam_marks,x='Examination' ,y= 'Percentage', color='Percentage')
