@@ -29,7 +29,7 @@ def drawchart(exam,df):
         if exam in ['PT1','PT2']:
             st.scatter_chart(df,x='Subject',y=['Max_PT',exam],color='Subject')
         else:
-            st.line_chart(df,x='Subject',y=['Max_Finals',exam],color='Subject')
+            st.line_chart(df,x='Subject',y=['MAX_Finals',exam],color='Subject')
         
 
          
