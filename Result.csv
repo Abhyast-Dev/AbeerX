@@ -1,7 +1,7 @@
 ﻿Subject,PT1,PT2,Half Yearly,PreBoard I,PreBoard II,Max_PT,MAX_Finals
-English,22,17,,,,25,80
+English,22,17,0,,,25,80
 Hindi,20.5,20,55,,,25,80
 Maths,18.5,16,31,,,25,80
 Science,16.5,17,55,,,25,80
-SSt,16.5,19,,,,25,80
-AI,8,10,,,,10,50
+SSt,16.5,19,0,,,25,80
+AI,8,10,0,,,10,50
