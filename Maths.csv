@@ -1,16 +1,16 @@
 Unit_Weightage,Unit,Chapter,NCERT Qs,NCERT Exemplar,Others,Confidence,PT1,PT2,Half Yearly,PreBoard I,PreBoard II,Test_count
-6.0,Number Systems,Real Numbers,,,,,True,,True,True,True,1
+10.0,Number Systems,Real Numbers,,,,,True,,True,True,True,1
 20.0,Algebra,Polynomials,,,,,True,True,True,True,True,4
 ,Algebra,Graph of Linear Equations in 2 variables,,,,,True,True,True,True,True,0
 ,Algebra,Linear Equations in 2 variables,,,,,,True,True,True,True,1
 ,Algebra,Quadratic equations,,,,,,True,True,True,True,1
 ,Algebra,Arithmetic Progression,,,,,,True,True,True,True,1
-6.0,Coordinate Geometry,Coordinate Geometry,,,,,,,True,True,True,0
+4.0,Coordinate Geometry,Coordinate Geometry,,,,,,,True,True,True,0
 12.0,Trignometry,Introduction to Trignometry,,,,,,,True,True,True,0
 ,Trignometry,Applications of Trignometry,,,,,,,True,True,True,0
-10.0,Mensuration,Area related to Circles,,,,,,,,True,True,0
+13.0,Mensuration,Area related to Circles,,,,,,,,True,True,0
 ,Mensuration,Surface Areas and Volumes,,,,,,,,True,True,0
-15.0,Geometry,Triangles,,,,,,,True,True,True,0
+27.0,Geometry,Triangles,,,,,,,True,True,True,0
 ,Geometry,Circles,,,,,,,True,True,True,0
-11.0,Statistics and Probability,Statistics,,,,,,,,True,True,0
+6.0,Statistics and Probability,Statistics,,,,,,,,True,True,0
 ,Statistics and Probability,Probability,,,,,,,,True,True,0
