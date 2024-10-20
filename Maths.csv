@@ -8,9 +8,9 @@ Unit_Weightage,Unit,Chapter,NCERT Qs,NCERT Exemplar,Others,Confidence,PT1,PT2,Ha
 6.0,Coordinate Geometry,Coordinate Geometry,,,,,,,True,True,True,0
 12.0,Trignometry,Introduction to Trignometry,,,,,,,True,True,True,0
 ,Trignometry,Applications of Trignometry,,,,,,,True,True,True,0
-10.0,Mensuration,Area related to Circles,,,,,,,,True,True,0
+10.0,Mensuration,Area related to Circles,,,,,,,,True,True,1
 ,Mensuration,Surface Areas and Volumes,,,,,,,,True,True,0
 15.0,Geometry,Triangles,,,,,,,True,True,True,0
 ,Geometry,Circles,,,,,,,True,True,True,0
 11.0,Statistics and Probability,Statistics,,,,,,,,True,True,0
-,Statistics and Probability,Probability,,,,,,,,True,True,0
+,Statistics and Probability,Probability,,,,,,,,True,True,1
