@@ -86,7 +86,8 @@ elif choice == "***Run up to Board Exams***":
     
 
     
-"""elif choice=="***Your Progress***":
+"""
+elif choice=="***Your Progress***":
     tab1,tab2,tab3,tab4,tab5=st.tabs(["Subjectwise Info","Practice Tests Marks Entry","Practice Tests Report","Check Preparedness", "Practice Test details"])
     with tab1:
           pr.subject()
@@ -99,6 +100,7 @@ elif choice == "***Run up to Board Exams***":
           pr.ready()
     with tab5:
           pr.examadministered()
+          
 """
 
 
