@@ -83,8 +83,13 @@ elif choice=="***Your Progress***":
     with tab5:
           pr.examadministered()
 elif choice == "***Run up to Board Exams***":
-    
-    st.write("Today's Target")
+    df= pd.read_csv("Boardprep.csv")
+    tab1,tab2 = st.tabs(["Today's Target","Complete plan"])
+    with tab1:
+        st.write("Setting targets is the key to unlocking your true potential. Scoring well is not just about the marks but about giving your best with discipline, focus, and effort. When you perform to your full potential, you leave no room for regrets—only the satisfaction of knowing you gave it your all.")
+        st.write("Today's Target")
+    with tab2:
+        st.dataframe(df)
     
 
 
