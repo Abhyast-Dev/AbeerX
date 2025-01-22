@@ -90,6 +90,8 @@ elif choice == "***Run up to Board Exams***":
         st.caption(" My dear Abeer")
         st.caption(":blue[Setting targets is the key to unlocking your true potential. Scoring well is not just about the marks but about giving your best with discipline, focus, and effort. When you perform to your full potential, you leave no room for regrets—only the satisfaction of knowing you gave it your all.]")
         today = date.today()
+        st.write(today)
+        st.write(df['Date'])
         rslt_df = df[(df['Date'] == today)]
         st.write(rslt_df)
     with tab2:
