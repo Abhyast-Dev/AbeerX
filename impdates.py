@@ -55,12 +55,19 @@ def exam_tab2():
             st.image("Halfyearly_Hindi.png")
             st.image("Halfyearly_math,science,ssc.png")
             st.image("Halfyearly_AI.png")
-    elif option in ["PreBoard I", "PreBoard II"]:
-        st.image("Pb1and2_English.png")
-        st.image("Pb1and2_Hindi.png")
-        st.image("Pb1and2_Maths.png")
-        st.image("Pb1and2_Science.png")
-        st.image("Pb1and2_SscandAI.png")
+    elif option in ["PreBoard I", "PreBoard II","Board Exam"]:
+        tab1,tab2 = st.tabs(["Syllabus","Board Datesheet"])
+        with tab1:
+            st.image("Pb1and2_English.png")
+            st.image("Pb1and2_Hindi.png")
+            st.image("Pb1and2_Maths.png")
+            st.image("Pb1and2_Science.png")
+            st.image("Pb1and2_SscandAI.png")
+        with tab2:
+            st.image("Boarddatesheet.png")
+
+            
+            
 
             
  
