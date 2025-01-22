@@ -82,7 +82,8 @@ elif choice=="***Your marks***":
     with tab4:
           pr.ready()
     with tab5:
-          pr.examadministered()"""
+          pr.examadministered()
+"""
 elif choice == "***Run up to Board Exams***":
     df= pd.read_csv("Boardprep.csv")
     tab1,tab2 = st.tabs(["Today's Target","Complete plan"])
