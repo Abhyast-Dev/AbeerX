@@ -50,7 +50,7 @@ with st.sidebar:
     st.title(':blue['+ndays[0]+' to go!] :maple_leaf:')
     st.caption(":green[Remember,]:rainbow[ Exams are not about who's the best, but about who can handle pressure the best]" )
     st.caption(":green[**Let's :red[DO IT] together!**] :sunglasses:")
-    choice = st.radio( "***What are you thinking about?***",["***Dates and Syllabus***", "***Your marks***", "***Your Progress***", "***Run up to Board Exams***"])
+    choice = st.radio( "***What are you thinking about?***",["***Dates and Syllabus***", "***Your marks***","***Run up to Board Exams***"])
 if choice=="***Dates and Syllabus***":
     tab1,tab2=st.tabs(["Exam","Syllabus"])
     with tab1:
