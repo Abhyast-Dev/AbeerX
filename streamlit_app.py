@@ -74,8 +74,8 @@ elif choice == "***Run up to Board Exams***":
     df= pd.read_csv("Boardprep.csv")
     tab1,tab2 = st.tabs(["Today's Target","Complete plan"])
     with tab1:
-        st.caption(" My dear Abeer")
-        st.caption(":blue[Setting targets is the key to unlocking your true potential. Scoring well is not just about the marks but about giving your best with discipline, focus, and effort. When you perform to your full potential, you leave no room for regrets—only the satisfaction of knowing you gave it your all.]")
+        st.caption(":blue[My dear Abeer]")
+        st.caption(":red[Setting targets is the key to unlocking your true potential. Scoring well is not just about the marks but about giving your best with discipline, focus, and effort. When you perform to your full potential, you leave no room for regrets—only the satisfaction of knowing you gave it your all.]")
         today = date.today()
         st.write(today)
         x = pd.to_datetime(df['Date'] ).dt.date
