@@ -92,7 +92,7 @@ elif choice == "***Run up to Board Exams***":
         today = date.today()
         rslt_df = df[(df['Date'] == today)]
         if df['Date']:
-        st.write(rslt_df)
+            st.write(rslt_df)
     with tab2:
         st.dataframe(df)
     
