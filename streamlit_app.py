@@ -69,21 +69,7 @@ elif choice=="***Your marks***":
             marks.exam_Analysis()
     with tab4:
             marks.subj_Analysis()
-    
-"""elif choice=="***Your Progress***":
-    tab1,tab2,tab3,tab4,tab5=st.tabs(["Subjectwise Info","Practice Tests Marks Entry","Practice Tests Report","Check Preparedness", "Practice Test details"])
-    with tab1:
-          pr.subject()
-    with tab2:
-          st.subheader("Hey Abeer! The marks need to be directly updated to CSV. Sorry for the inconvenience")
-          #pr.revision()
-    with tab3:
-          pr.testRec()
-    with tab4:
-          pr.ready()
-    with tab5:
-          pr.examadministered()
-"""
+
 elif choice == "***Run up to Board Exams***":
     df= pd.read_csv("Boardprep.csv")
     tab1,tab2 = st.tabs(["Today's Target","Complete plan"])
@@ -99,6 +85,21 @@ elif choice == "***Run up to Board Exams***":
         st.dataframe(df)
     
 
+    
+"""elif choice=="***Your Progress***":
+    tab1,tab2,tab3,tab4,tab5=st.tabs(["Subjectwise Info","Practice Tests Marks Entry","Practice Tests Report","Check Preparedness", "Practice Test details"])
+    with tab1:
+          pr.subject()
+    with tab2:
+          st.subheader("Hey Abeer! The marks need to be directly updated to CSV. Sorry for the inconvenience")
+          #pr.revision()
+    with tab3:
+          pr.testRec()
+    with tab4:
+          pr.ready()
+    with tab5:
+          pr.examadministered()
+"""
 
 
     
