@@ -70,7 +70,7 @@ elif choice=="***Your marks***":
     with tab4:
             marks.subj_Analysis()
     
-elif choice=="***Your Progress***":
+"""elif choice=="***Your Progress***":
     tab1,tab2,tab3,tab4,tab5=st.tabs(["Subjectwise Info","Practice Tests Marks Entry","Practice Tests Report","Check Preparedness", "Practice Test details"])
     with tab1:
           pr.subject()
@@ -82,7 +82,7 @@ elif choice=="***Your Progress***":
     with tab4:
           pr.ready()
     with tab5:
-          pr.examadministered()
+          pr.examadministered()"""
 elif choice == "***Run up to Board Exams***":
     df= pd.read_csv("Boardprep.csv")
     tab1,tab2 = st.tabs(["Today's Target","Complete plan"])
@@ -92,7 +92,6 @@ elif choice == "***Run up to Board Exams***":
         today = date.today()
         st.write(today)
         x = pd.to_datetime(df['Date'] ).dt.date
-        st.write(x)
         rslt_df = df[(x == today)]
         st.write(rslt_df)
     with tab2:
