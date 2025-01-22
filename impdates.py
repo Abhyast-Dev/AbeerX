@@ -36,7 +36,7 @@ def exam_tab1():
     st.caption(":green[**Exam dates**]")
     st.dataframe(exam_det.style.applymap(color_status, subset=['Status']),hide_index = True)  
     st.write("Hey Abeer!")
-    st.write(":red["+str(messagedays['Examination'].values[0])+"] is approaching. We have :red[",str(messagedays['Days left'].values[0]),"] days to prepare! Go on :red[SET TARGETS], give your BEST!")      
+    st.write(":red["+str(messagedays['Examination'].values[0])+"] are approaching. We have :red[",str(messagedays['Days left'].values[0]),"] days to prepare! Go on :red[SET TARGETS], give your BEST!")      
     
 
 def exam_tab2():
