@@ -93,7 +93,7 @@ elif choice == "***Run up to Board Exams***":
         st.write(today)
         x = pd.to_datetime(df['Date'] ).dt.date
         st.write(x)
-        rslt_df = df[(df['Date'] == today)]
+        rslt_df = df[(x == today)]
         st.write(rslt_df)
     with tab2:
         st.dataframe(df)
