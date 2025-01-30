@@ -81,6 +81,13 @@ elif choice == "***Run up to Board Exams***":
         x = pd.to_datetime(df['Date'] ).dt.date
         rslt_df = df[(x == today)]
         st.write(rslt_df)
+        st.write("Do ensure that you cover every concept outlined in curriculum.Please refer below:")
+        st.link_button("Mathematics", "https://cbseacademic.nic.in/web_material/CurriculumMain25/Sec/Maths_Sec_2024-25.pdf")
+        st.link_button("Science", "https://cbseacademic.nic.in/web_material/CurriculumMain25/Sec/Science_Sec_2024-25.pdf")
+        st.link_button("Social Science", "https://cbseacademic.nic.in/web_material/CurriculumMain25/Sec/Social_Science_Sec_2024-25.pdf")
+        st.link_button("Hindi", " https://cbseacademic.nic.in/web_material/CurriculumMain25/Sec/Hindi_B_Sec_2024-25.pdf")
+        st.link_button("English", "https://cbseacademic.nic.in/web_material/CurriculumMain25/Sec/English_LL_2024-25.pdf")
+
     with tab2:
         st.dataframe(df)
     
