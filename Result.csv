@@ -1,7 +1,7 @@
-﻿Subject,PT1,PT2,Half Yearly,PreBoard I,PreBoard II,Max_PT,MAX_Finals
-English,22,17,61.5,64,62,25,80
-Hindi,20.5,20,67.5,61.5,64.5,25,80
-Maths,18.5,16,31,60.5,56,25,80
-Science,16.5,17,55,44,61,25,80
-SSt,16.5,19,60,61,71,25,80
-AI,8,10,35.5,43,47.5,10,50
+﻿Subject,PT1,PT2,Half Yearly,PreBoard I,PreBoard II,Practice Paper,Max_PT,MAX_Finals
+English,22,17,61.5,64,62,0,25,80
+Hindi,20.5,20,67.5,61.5,64.5,0,25,80
+Maths,18.5,16,31,60.5,56,68,25,80
+Science,16.5,17,55,44,61,0,25,80
+SSt,16.5,19,60,61,71,66,25,80
+AI,8,10,35.5,43,47.5,0,10,50
